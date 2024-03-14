@@ -1,0 +1,75 @@
+﻿@model List<Trip>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Trips Log Application</h1>
+
+    <table class="table table-bordered table-striped">
+    <thead>
+        <tr class="align-middle">
+            <th>Destination</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Accommodation</th>
+            <th>Things To Do</th>
+            <th>
+                <a 
+                class="btn btn-outline-primary align-start mb-2"
+                asp-controller="Home"
+                asp-action="Add">
+                    Add a Trip
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trip in Model)
+        {
+            <tr>
+                <td class="align-middle">
+                    <a 
+                    asp-controller="Home"
+                    asp-action="Details"
+                    asp-route-id="@trip.Id"
+                    asp-route-slug="@trip.Slug"
+                    class="btn btn-outline-secondary"
+                    style="width: 100%">
+                       @trip.Destination
+                    </a>
+                </td>
+                <td class="text-center align-middle">@trip.StartDate</td>
+                <td class="text-center align-middle">@trip.EndDate</td>
+                <td class="text-center align-middle">
+                    @trip.Accommodation <br />
+                    @trip.AccommodationPhone <br />
+                    @trip.AccommodationEmail
+                </td>
+                <td class="text-center align-middle">
+                    @if (trip.ThingsToDo != null)
+                    {
+                        <ul>
+                            @foreach (string toDo in @trip.ThingsToDo)
+                            {
+                                <li>@toDo</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Nothing to do.</p>
+                    }
+                </td>
+                <td class="align-middle">
+                    <button 
+                    class="btn btn-outline-danger"
+                    style="width: 100%">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
