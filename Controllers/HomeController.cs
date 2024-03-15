@@ -127,7 +127,6 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             Trip trip = packer.Unpack(tripJson);
             trip.ThingsToDo = tripTempData.ThingsToDo;
             TempData["Trip"] = packer.Pack(trip);
-
             context.Trips.Add(trip);
             context.SaveChanges();
 

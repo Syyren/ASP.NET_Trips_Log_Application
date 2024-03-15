@@ -62,7 +62,7 @@
                 <td class="text-center align-middle">
                     @if (trip.ThingsToDo != null)
                     {
-                        <ul>
+                        <ul class="list-group">
                             @foreach (var toDo in @trip.ThingsToDo.Select((value, i) => (value, i)))
                             {
                                 if (toDo.i == 3)
@@ -71,18 +71,19 @@
                                         asp-controller="Home"
                                         asp-action="Details"
                                         asp-route-id="@trip.Id"
-                                        asp-route-slug="@trip.Slug">
+                                        asp-route-slug="@trip.Slug"
+                                        class="list-group-item">
                                             ...
                                         </a>
                                         break;
                                     }
-                                <li>@toDo.value</li>
+                                    <li class="list-group-item">@toDo.value</li>
                             }
                         </ul>
                     }
                     else
                     {
-                        <p>Nothing to do.</p>
+                        <span>Nothing to do.</span>
                     }
                 </td>
                 <td class="align-middle">
