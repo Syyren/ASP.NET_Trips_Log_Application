@@ -2,15 +2,17 @@
 
 namespace CPRO2211_Assignment_3_Trips_Log_Application.Models
 {
+    //custom validator for the DateTime EndDate property
     public class ValidEndDate : ValidationAttribute
     {
+        //gathering the StartDate property name
         private readonly string _startDatePropertyName;
-
         public ValidEndDate(string startDatePropertyName)
         {
             _startDatePropertyName = startDatePropertyName;
         }
 
+        //method that returns the validation result
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var startDateProperty = validationContext.ObjectType.GetProperty(_startDatePropertyName);
