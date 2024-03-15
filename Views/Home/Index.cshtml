@@ -19,7 +19,7 @@
             <th>Destination</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Accommodation</th>
+            <th>Accommodations</th>
             <th>Things To Do</th>
             <th>
                 <a 
@@ -43,15 +43,21 @@
                     asp-route-slug="@trip.Slug"
                     class="btn btn-outline-secondary"
                     style="width: 100%">
-                       @trip.Destination
+                       @Html.DisplayFor(model => trip.Destination)
                     </a>
                 </td>
                 <td class="text-center align-middle">@Html.DisplayFor(model => trip.StartDate)</td>
                 <td class="text-center align-middle">@Html.DisplayFor(model => trip.EndDate)</td>
                 <td class="text-center align-middle">
-                    @trip.Accommodation <br />
-                    @trip.AccommodationPhone <br />
-                    @trip.AccommodationEmail
+                    @Html.DisplayFor(model => trip.Accommodation)
+                    @if (@trip.AccommodationPhone != "")
+                    {
+                        <br /> @Html.DisplayFor(model => trip.AccommodationPhone)
+                    }
+                        @if (@trip.AccommodationEmail != "")
+                    {
+                        <br /> @Html.DisplayFor(model => trip.AccommodationEmail)
+                    }
                 </td>
                 <td class="text-center align-middle">
                     @if (trip.ThingsToDo != null)
@@ -61,7 +67,13 @@
                             {
                                 if (toDo.i == 3)
                                     {
-                                        <li>...</li>
+                                        <a 
+                                        asp-controller="Home"
+                                        asp-action="Details"
+                                        asp-route-id="@trip.Id"
+                                        asp-route-slug="@trip.Slug">
+                                            ...
+                                        </a>
                                         break;
                                     }
                                 <li>@toDo.value</li>

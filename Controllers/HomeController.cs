@@ -1,7 +1,5 @@
 using CPRO2211_Assignment_3_Trips_Log_Application.Models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
 
 namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
@@ -41,6 +39,7 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             return View();
         }
 
+        //route that posts the first set of data from page 1
         [HttpPost]
         [Route("/add/page-1")]
         public IActionResult Add(Trip tripTempData)
@@ -61,6 +60,7 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             return RedirectToAction("Add2");
         }
 
+        //route that gets the data from the tempdata and checks it before either returning the view or redirecting
         [HttpGet]
         [Route("/add/page-2")]
         public IActionResult Add2()
@@ -78,20 +78,13 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             return View(); //shows page 2
         }
 
+        //route that posts the data from the second page
         [HttpPost]
         [Route("/add/page-2")]
         public IActionResult Add2(Trip tripTempData)
         {
             if (!ModelState.IsValid)
             {
-                foreach (var key in ModelState.Keys)
-                {
-                    var state = ModelState[key];
-                    foreach (var error in state.Errors)
-                    {
-                        Console.WriteLine($"Property: {key}, Error: {error.ErrorMessage}");
-                    }
-                }
                 return View(tripTempData);
             }
             //update temp trip data
@@ -102,11 +95,15 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
 
             trip.AccommodationPhone = tripTempData.AccommodationPhone;
             trip.AccommodationEmail = tripTempData.AccommodationEmail;
+            //checking if the values are null and assigning them as an empty string if so.
+            trip.AccommodationPhone ??= "";
+            trip.AccommodationEmail ??= "";
             TempData["Trip"] = packer.Pack(trip);
 
             return RedirectToAction("Add3"); //redirects to page 3
         }
 
+        //route that checks the incoming data for being null before either returning the view or rerouting
         [HttpGet]
         [Route("add/page-3")]
         public IActionResult Add3()
@@ -125,6 +122,7 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             return View(trip);
         }
 
+        //route that posts the data from the third page and saves to the database
         [HttpPost]
         [Route("add/page-3")]
         public IActionResult Add3(Trip tripTempData)
@@ -146,7 +144,7 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             context.SaveChanges();
 
             //redirect to the index with a success message in the temp data
-            TempData["SuccessMessage"] = "Success!";
+            TempData["SuccessMessage"] = $"Successfully saved the {trip.Destination} trip!";
             return RedirectToAction("Index", "Home");
         }
 
@@ -173,7 +171,7 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
         {
             context.Trips.Remove(trip);
             context.SaveChanges();
-            TempData["SuccessMessage"] = "Success!";
+            TempData["SuccessMessage"] = $"Successfully deleted the {trip.Destination} trip!";
             return RedirectToAction("Index"); //returns the index view after deletion is successful
         }
 

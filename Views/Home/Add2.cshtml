@@ -3,12 +3,12 @@
     ViewBag.Title = "Add Trip - Page 2";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2 class="display-4 mb-4">@ViewBag.Title</h2>
 <form method="post" asp-action="Add2">
 
     <div class="form-group">
         <label asp-for="AccommodationPhone">
-            @Html.DisplayNameFor(model => model.AccommodationPhone)*
+            @Html.DisplayNameFor(model => model.AccommodationPhone)
         </label>
         <input asp-for="AccommodationPhone" class="form-control">
         <span asp-validation-for="AccommodationPhone" class="text-danger"></span>
