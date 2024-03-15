@@ -1,7 +1,11 @@
 ﻿@model Trip
+@{
+    ViewBag.Title = "Things To Do";
+}
+
+<h2 class="display-4 mb-4 text-center">@ViewBag.Title</h2>
 
 <form asp-action="Add3" method="post">
-    <h2 class="display-4 mb-4">@Html.DisplayNameFor(model => model.ThingsToDo)</h2>
     <div>
         <div id="toDoContainer" class="mb-2"></div>
         <button 

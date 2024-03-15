@@ -67,9 +67,6 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
         {
             string tripJson = TempData["Trip"] as string;
             Trip trip = packer.Unpack(tripJson);
-
-            Console.WriteLine($"page get 2 json: {tripJson}");
-
             if (trip is null)
             {
                 return RedirectToAction("Add"); //redirects to the first page in the event of no data
@@ -90,9 +87,6 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             //update temp trip data
             string tripJson = TempData["Trip"] as string;
             Trip trip = packer.Unpack(tripJson);
-
-            Console.WriteLine($"page post 2 json: {tripJson}");
-
             trip.AccommodationPhone = tripTempData.AccommodationPhone;
             trip.AccommodationEmail = tripTempData.AccommodationEmail;
             //checking if the values are null and assigning them as an empty string if so.
@@ -110,9 +104,6 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
         {
             string tripJson = TempData["Trip"] as string;
             Trip trip = packer.Unpack(tripJson);
-
-            Console.WriteLine($"page 3 get json: {tripJson}");
-
             if (trip == null)
             {
                 return RedirectToAction("Add");
@@ -134,9 +125,6 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
             //update trip data with things to do
             string tripJson = TempData["Trip"] as string;
             Trip trip = packer.Unpack(tripJson);
-
-            Console.WriteLine($"page 3 post json: {tripJson}");
-
             trip.ThingsToDo = tripTempData.ThingsToDo;
             TempData["Trip"] = packer.Pack(trip);
 
@@ -169,9 +157,9 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Controllers
         [HttpPost]
         public IActionResult Delete(Trip trip)
         {
+            TempData["SuccessMessage"] = "Successfully deleted the trip!";
             context.Trips.Remove(trip);
             context.SaveChanges();
-            TempData["SuccessMessage"] = $"Successfully deleted the {trip.Destination} trip!";
             return RedirectToAction("Index"); //returns the index view after deletion is successful
         }
 
