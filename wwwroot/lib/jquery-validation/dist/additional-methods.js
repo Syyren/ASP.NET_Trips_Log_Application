@@ -311,7 +311,10 @@ $.validator.addMethod( "cnhBR", function( value ) {
     return false;
   }
 
-  // Step 1 - using first Check Number:
+	// 
+
+
+	1 - using first Check Number:
   for ( i = 0, j = 9, v = 0; i < 9; ++i, --j ) {
     sum += +( value.charAt( i ) * j );
   }

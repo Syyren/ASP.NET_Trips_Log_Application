@@ -37,8 +37,8 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Migrations
                 columns: new[] { "Id", "Accommodation", "AccommodationEmail", "AccommodationPhone", "Destination", "EndDate", "StartDate", "ThingsToDo" },
                 values: new object[,]
                 {
-                    { 1, "DisneyLand Hotel", "Hotels@DisneyLand.com", "714-781-4636", "Disney Land", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), new DateTime(2024, 3, 14, 14, 1, 33, 374, DateTimeKind.Local).AddTicks(659), "[\"Ride the rides\",\"See the mascots\",\"Eat food\"]" },
-                    { 2, "Evil DisneyLand Hotel", "Hotels@EvilDisneyLand.com", "636-418-7417", "Evil Disney Land", new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999), new DateTime(2024, 3, 14, 14, 1, 33, 374, DateTimeKind.Local).AddTicks(781), "[\"Ride the evil rides\",\"See the evil mascots\",\"Eat evil food\"]" }
+                    { -2, "Evil DisneyLand Hotel", "Hotels@EvilDisneyLand.com", "636-418-7417", "Evil Disney Land", new DateTime(2024, 3, 31, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4626), new DateTime(2024, 3, 24, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4623), "[\"Ride the evil rides\",\"See the evil mascots\",\"Eat evil food\"]" },
+                    { -1, "DisneyLand Hotel", "Hotels@DisneyLand.com", "714-781-4636", "Disney Land", new DateTime(2024, 3, 21, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4604), new DateTime(2024, 3, 14, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4554), "[\"Ride the rides\",\"See the mascots\",\"Eat food\"]" }
                 });
         }
 

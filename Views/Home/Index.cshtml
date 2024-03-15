@@ -6,6 +6,13 @@
 <div class="text-center">
     <h1 class="display-4 mb-4">Trips Log Application</h1>
 
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <div id="successMessage" class="alert alert-success">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
     <table class="table table-bordered table-striped">
     <thead>
         <tr class="align-middle">
@@ -39,8 +46,8 @@
                        @trip.Destination
                     </a>
                 </td>
-                <td class="text-center align-middle">@trip.StartDate</td>
-                <td class="text-center align-middle">@trip.EndDate</td>
+                <td class="text-center align-middle">@Html.DisplayFor(model => trip.StartDate)</td>
+                <td class="text-center align-middle">@Html.DisplayFor(model => trip.EndDate)</td>
                 <td class="text-center align-middle">
                     @trip.Accommodation <br />
                     @trip.AccommodationPhone <br />
@@ -50,9 +57,14 @@
                     @if (trip.ThingsToDo != null)
                     {
                         <ul>
-                            @foreach (string toDo in @trip.ThingsToDo)
+                            @foreach (var toDo in @trip.ThingsToDo.Select((value, i) => (value, i)))
                             {
-                                <li>@toDo</li>
+                                if (toDo.i == 3)
+                                    {
+                                        <li>...</li>
+                                        break;
+                                    }
+                                <li>@toDo.value</li>
                             }
                         </ul>
                     }
@@ -62,14 +74,28 @@
                     }
                 </td>
                 <td class="align-middle">
-                    <button 
+                    <a 
                     class="btn btn-outline-danger"
-                    style="width: 100%">
+                    style="width: 100%"
+                    asp-controller="Home"
+                    asp-action="Delete"
+                    asp-route-id="@trip.Id"
+                    asp-route-slug="@trip.Slug">
                         Delete
-                    </button>
+                    </a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 </div>
+
+@section Scripts 
+{
+    <script>
+        $(document).ready(function () 
+        {
+            $("#successMessage").delay(5000).fadeOut(1000);
+        });
+    </script>
+}

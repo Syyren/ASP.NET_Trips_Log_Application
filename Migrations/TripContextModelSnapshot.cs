@@ -61,24 +61,24 @@ namespace CPRO2211_Assignment_3_Trips_Log_Application.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = -1,
                             Accommodation = "DisneyLand Hotel",
                             AccommodationEmail = "Hotels@DisneyLand.com",
                             AccommodationPhone = "714-781-4636",
                             Destination = "Disney Land",
-                            EndDate = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
-                            StartDate = new DateTime(2024, 3, 14, 14, 1, 33, 374, DateTimeKind.Local).AddTicks(659),
+                            EndDate = new DateTime(2024, 3, 21, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4604),
+                            StartDate = new DateTime(2024, 3, 14, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4554),
                             ThingsToDo = "[\"Ride the rides\",\"See the mascots\",\"Eat food\"]"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = -2,
                             Accommodation = "Evil DisneyLand Hotel",
                             AccommodationEmail = "Hotels@EvilDisneyLand.com",
                             AccommodationPhone = "636-418-7417",
                             Destination = "Evil Disney Land",
-                            EndDate = new DateTime(9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Unspecified).AddTicks(9999),
-                            StartDate = new DateTime(2024, 3, 14, 14, 1, 33, 374, DateTimeKind.Local).AddTicks(781),
+                            EndDate = new DateTime(2024, 3, 31, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4626),
+                            StartDate = new DateTime(2024, 3, 24, 17, 52, 50, 658, DateTimeKind.Local).AddTicks(4623),
                             ThingsToDo = "[\"Ride the evil rides\",\"See the evil mascots\",\"Eat evil food\"]"
                         });
                 });
